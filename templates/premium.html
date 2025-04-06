@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Premium - PDF Converter{% endblock %}
+
+{% block content %}
+<div class="premium-container">
+    <h1>Upgrade to Premium</h1>
+    <div class="premium-plans">
+        <div class="plan">
+            <h2>Free Plan</h2>
+            <div class="price">$0/month</div>
+            <ul>
+                <li>5 conversions per day</li>
+                <li>Basic support</li>
+                <li>Standard processing</li>
+            </ul>
+            <button class="current-plan">Current Plan</button>
+        </div>
+        <div class="plan featured">
+            <h2>Premium Plan</h2>
+            <div class="price">$9.99/month</div>
+            <ul>
+                <li>Unlimited conversions</li>
+                <li>Priority support</li>
+                <li>Faster processing</li>
+                <li>Advanced features</li>
+            </ul>
+            <button class="upgrade-btn">Upgrade Now</button>
+        </div>
+    </div>
+</div>
+{% endblock %} 

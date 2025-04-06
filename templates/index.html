@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <h1>Convert PDF Files</h1>
+    <p>Free online PDF converter to convert your PDF files to PPT, Word, Excel, or merge PDFs</p>
+</div>
+
+{% if session.user_id and not is_premium %}
+    <div class="conversion-limit-alert">
+        <i class="fas fa-info-circle"></i>
+        <span>
+            You have used {{ conversion_count }}/5 daily conversions.
+            {% if conversion_count >= 5 %}
+                You've reached your daily limit. 
+                <a href="{{ url_for('premium') }}">Upgrade to Premium</a> for unlimited conversions!
+            {% endif %}
+        </span>
+    </div>
+{% endif %}
+
+<div class="tools-section">
+    <!-- PDF to PPT -->
+    <div class="tool-card {% if not is_premium and conversion_count >= 5 %}disabled{% endif %}">
+        <img src="{{ url_for('static', filename='images/ppt-icon.png') }}" alt="PPT">
+        <h3>PDF to PPT</h3>
+        <p>Convert PDF files to PowerPoint presentations</p>
+        {% if not is_premium and conversion_count >= 5 %}
+            <div class="limit-reached">
+                <p>Daily limit reached</p>
+                <a href="{{ url_for('premium') }}" class="upgrade-btn">Upgrade to Premium</a>
+            </div>
+        {% else %}
+            <form action="{{ url_for('convert_file', conversion_type='pdf-to-ppt') }}" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".pdf" class="file-input" required>
+                <button type="submit" class="convert-btn">Convert to PPT</button>
+            </form>
+        {% endif %}
+    </div>
+
+    <!-- PDF to Word -->
+    <div class="tool-card {% if not is_premium and conversion_count >= 5 %}disabled{% endif %}">
+        <img src="{{ url_for('static', filename='images/word-icon.png') }}" alt="Word">
+        <h3>PDF to Word</h3>
+        <p>Convert PDF files to Word documents</p>
+        <form action="{{ url_for('convert_file', conversion_type='pdf-to-word') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".pdf" class="file-input">
+            <button type="submit" class="convert-btn">Convert to Word</button>
+        </form>
+    </div>
+
+    <!-- PDF to Excel -->
+    <div class="tool-card {% if not is_premium and conversion_count >= 5 %}disabled{% endif %}">
+        <img src="{{ url_for('static', filename='images/excel-icon.png') }}" alt="Excel">
+        <h3>PDF to Excel</h3>
+        <p>Convert PDF files to Excel spreadsheets</p>
+        <form action="{{ url_for('convert_file', conversion_type='pdf-to-excel') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".pdf" class="file-input">
+            <button type="submit" class="convert-btn">Convert to Excel</button>
+        </form>
+    </div>
+
+    <!-- Merge PDFs -->
+    <div class="tool-card {% if not is_premium and conversion_count >= 5 %}disabled{% endif %}">
+        <img src="{{ url_for('static', filename='images/merge-icon.png') }}" alt="Merge">
+        <h3>Merge PDFs</h3>
+        <p>Combine two PDF files into one</p>
+        <form action="{{ url_for('merge_pdfs') }}" method="post" enctype="multipart/form-data">
+            <div class="merge-inputs">
+                <div class="file-input-group">
+                    <label>First PDF:</label>
+                    <input type="file" name="file1" accept=".pdf" class="file-input" required>
+                </div>
+                <div class="file-input-group">
+                    <label>Second PDF:</label>
+                    <input type="file" name="file2" accept=".pdf" class="file-input" required>
+                </div>
+            </div>
+            <button type="submit" class="convert-btn">Merge PDFs</button>
+        </form>
+    </div>
+</div>
+
+<!-- About Section -->
+<section id="about" class="about-section">
+    <div class="container">
+        <h2>About Our PDF Converter</h2>
+        <p>Our PDF converter tool provides fast and reliable conversion services for all your document needs. We support various formats including PowerPoint, Word, and Excel, ensuring you get the best quality conversions.</p>
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-lock"></i>
+                <h3>Secure</h3>
+                <p>Your files are automatically deleted after conversion</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-bolt"></i>
+                <h3>Fast</h3>
+                <p>Quick conversion process with optimal results</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-cloud"></i>
+                <h3>Cloud-Based</h3>
+                <p>No software installation required</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <p>Email: support@pdfconverter.com</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <p>Phone: +91 9876543210</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>Address: 123 kankubag society, kankubag, kharghar, navi mumbai</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add this modal for the limit reached message -->
+<div id="limitModal" class="modal">
+    <div class="modal-content">
+        <h2>Daily Limit Reached</h2>
+        <p>You have reached your daily limit of 5 conversions.</p>
+        <p>Upgrade to premium for unlimited conversions!</p>
+        <div class="modal-buttons">
+            <a href="{{ url_for('premium') }}" class="premium-btn">Upgrade to Premium</a>
+            <button class="close-btn">Close</button>
+        </div>
+    </div>
+</div>
+{% endblock %} 

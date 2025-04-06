@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Conversion History - PDF Converter{% endblock %}
+
+{% block content %}
+<div class="history-container">
+    <h1>Your Conversion History</h1>
+    <div class="history-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Conversion Type</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for conversion in conversions %}
+                <tr>
+                    <td>{{ conversion[0] }}</td>
+                    <td>{{ conversion[1] }}</td>
+                    <td>{{ conversion[2] }}</td>
+                    <td>{{ conversion[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %} 
